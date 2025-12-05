@@ -10,6 +10,7 @@ export function MainPage() {
   };
   return (
     <div>
+      <h1></h1>
       <div style={{ display: "flex", gap: "40px" }}>
         <TrackList
           selectedTrackId={trackId}
