@@ -1,0 +1,28 @@
+import { useTrackDetail } from "../bll/useTrackDetail";
+import styles from ".//TrackDetail.module.css";
+
+type Props = {
+  trackId: string | null;
+};
+
+// export function TrackDetail(props)тоже самое
+export function TrackDetail({ trackId }: Props) {
+  const { trackDetails } = useTrackDetail(trackId);
+
+  return (
+    <div className={styles.track}>
+      <h3>Details</h3>
+      {!trackDetails && !trackId && "Track is not selected"}
+      {!trackDetails && trackId && "Loading..."}
+      {trackDetails && trackId && trackDetails.id !== trackId && "Loading..."}
+      {/*если треки есть, покажем JSX*/}
+      {trackDetails && (
+        <div>
+          <h3>{trackDetails.attributes.title}</h3>
+          <h4>Lyrics</h4>
+          <p>{trackDetails.attributes.lyrics ?? "no lyrics"}</p>
+        </div>
+      )}
+    </div>
+  );
+}
